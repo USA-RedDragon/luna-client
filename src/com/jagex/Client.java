@@ -54,6 +54,7 @@ import com.jagex.world.animable.object.Object5;
 import com.jagex.world.animable.object.ObjectDef;
 import com.jagex.world.animable.object.ObjectManager;
 import io.luna.Constants;
+import io.luna.RsaParser;
 
 import java.applet.AppletContext;
 import java.awt.Color;
@@ -2345,6 +2346,7 @@ public class Client extends RSApplet {
     public static void main(String[] args) {
         System.out.println("RS2 user client - " + Constants.CLIENT_NAME + " - release #317");
         try {
+            RsaParser.parse();
             node = 10;
             setHighMem();
             isMembers = true;
