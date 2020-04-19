@@ -1,0 +1,6 @@
+server:
+  host: osrs.mcswain.dev
+  port: 43594
+  key:
+    exponent: 1234567890
+    modulus: 1234567890

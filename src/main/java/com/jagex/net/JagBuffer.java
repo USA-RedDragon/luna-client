@@ -8,7 +8,7 @@ import com.jagex.sign.Signlink;
 import com.jagex.world.NodeList;
 import com.jagex.world.NodeSub;
 import io.luna.Constants;
-import io.luna.RsaParser;
+import io.luna.Config;
 
 import java.math.BigInteger;
 
@@ -213,9 +213,8 @@ public final class JagBuffer extends NodeSub {
         readBytes(i, 0, abyte0);
         BigInteger biginteger2 = new BigInteger(abyte0);
         BigInteger biginteger3 = biginteger2;
-        if (Constants.DECODE_RSA)
-            biginteger3 = biginteger2.modPow(RsaParser.getExponent(),
-                RsaParser.getModulus());
+        biginteger3 = biginteger2.modPow(Config.get().getServer().getKey().getExponent(),
+            Config.get().getServer().getKey().getModulus());
         byte abyte1[] = biginteger3.toByteArray();
         currentOffset = 0;
         writeWordBigEndian(abyte1.length);

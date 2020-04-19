@@ -53,8 +53,8 @@ import com.jagex.world.animable.object.Object3;
 import com.jagex.world.animable.object.Object5;
 import com.jagex.world.animable.object.ObjectDef;
 import com.jagex.world.animable.object.ObjectManager;
+import io.luna.Config;
 import io.luna.Constants;
-import io.luna.RsaParser;
 
 import java.applet.AppletContext;
 import java.awt.Color;
@@ -305,7 +305,7 @@ public class Client extends RSApplet {
     }
 
     public Socket openSocket(int port) throws IOException {
-        return new Socket(InetAddress.getByName(Constants.CONNECT_HOST), port);
+        return new Socket(InetAddress.getByName(Config.get().getServer().getHost()), port);
     }
 
     private void processMenuClick() {
@@ -2344,9 +2344,9 @@ public class Client extends RSApplet {
     }
 
     public static void main(String[] args) {
+        Config.get();
         System.out.println("RS2 user client - " + Constants.CLIENT_NAME + " - release #317");
         try {
-            RsaParser.parse();
             node = 10;
             setHighMem();
             isMembers = true;
@@ -5479,7 +5479,7 @@ public class Client extends RSApplet {
                 drawLoginScreen(true);
             }
             socketStream = new RSSocket(this,
-                    openSocket(Constants.CONNECT_PORT));
+                    openSocket(Config.get().getServer().getPort()));
             long l = TextClass.longForName(s);
             int i = (int) (l >> 16 & 31L);
             jagBuffer.currentOffset = 0;
@@ -6892,7 +6892,7 @@ public class Client extends RSApplet {
     @Override
     public URL getCodeBase() {
         try {
-            return new URL(Constants.CONNECT_HOST + ":" + (80));
+            return new URL(Config.get().getServer().getHost() + ":" + (80));
         } catch (Exception _ex) {
         }
         return null;
