@@ -18,6 +18,10 @@ public final class Config {
         this.config = config;
     }
 
+    public Configuration getConfig() {
+        return config;
+    }
+
     public static Configuration get()
     {
         if(instance == null) {
@@ -32,9 +36,7 @@ public final class Config {
 
             instance = new Config(conf);
         }
-        Configuration config = null;
-        
 
-        return config;
+        return instance.getConfig();
     }
 }
